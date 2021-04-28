@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace OldSound\RabbitMqBundle\Tests\Functional;
 
 use OldSound\RabbitMqBundle\Tests\TestApp\Callbacks\MyCallbackClass;
