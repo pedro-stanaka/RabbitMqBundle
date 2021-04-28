@@ -1,0 +1,2 @@
+imports:
+    - { resource: './old_sound_rabbitmq.yml'  }

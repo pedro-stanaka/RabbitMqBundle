@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/8.3/phpunit.xsd"
         backupGlobals               = "false"
         backupStaticAttributes      = "false"
         colors                      = "true"
@@ -16,6 +18,9 @@
         </testsuite>
     </testsuites>
 
+    <php>
+       <env name="KERNEL_CLASS" value="OldSound\RabbitMqBundle\Tests\TestApp\AppKernel" />
+    </php>
     <filter>
         <whitelist>
             <directory>.</directory>

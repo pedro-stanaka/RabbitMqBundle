@@ -16,7 +16,7 @@ class MultipleConsumer extends Consumer
      * @var QueuesProviderInterface|null
      */
     protected $queuesProvider = null;
-    
+
     /**
      * Context the consumer runs in
      *
@@ -46,7 +46,7 @@ class MultipleConsumer extends Consumer
     {
         $this->queues = $queues;
     }
-    
+
     public function setContext($context)
     {
         $this->context = $context;
@@ -61,11 +61,8 @@ class MultipleConsumer extends Consumer
         }
 
         foreach ($this->queues as $name => $options) {
-            //PHP 5.3 Compliant
-            $currentObject = $this;
-
-            $this->getChannel()->basic_consume($name, $this->getQueueConsumerTag($name), false, false, false, false, function (AMQPMessage $msg) use($currentObject, $name) {
-                $currentObject->processQueueMessage($name, $msg);
+            $this->getChannel()->basic_consume($name, $this->getQueueConsumerTag($name), false, false, false, false, function (AMQPMessage $msg) use($name) {
+                $this->processQueueMessage($name, $msg);
             });
         }
     }

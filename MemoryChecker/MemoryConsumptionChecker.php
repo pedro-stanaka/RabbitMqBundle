@@ -44,9 +44,9 @@ class MemoryConsumptionChecker
     private function convertHumanUnitToNumerical($humanUnit)
     {
         $numerical = $humanUnit;
-        if (!is_numeric($humanUnit)) {
-            $numerical = (int) substr($numerical, 0, -1);
-            switch (substr($humanUnit, -1)) {
+        if (!\is_numeric($humanUnit)) {
+            $numerical = (int) \substr($numerical, 0, -1);
+            switch (\substr($humanUnit, -1)) {
                 case 'G':
                     $numerical *= pow(1024, 3);
                     break;

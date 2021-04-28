@@ -1,0 +1,29 @@
+services:
+    OldSound\RabbitMqBundle\Tests\TestApp\Callbacks\MyCallbackClass: ~
+
+
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            url: '%env(RABBITMQ_DSN)%'
+            lazy: false
+            connection_timeout: 30
+            read_write_timeout: 120
+            keepalive: false
+            heartbeat: 60
+            use_socket: false
+
+    consumers:
+        dummy_consumer:
+            connection: default
+            exchange_options: { name: 'producer.dummy', type: fanout }
+            queue_options: { name: 'dummy_queue' }
+            callback: 'OldSound\RabbitMqBundle\Tests\TestApp\Callbacks\MyCallbackClass'
+
+    producers:
+        test.dummy:
+            connection: default
+            exchange_options:
+                name: producer.dummy
+                type: fanout
